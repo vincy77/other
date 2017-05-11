@@ -1,0 +1,211 @@
+<html>
+<head>
+    <title>404</title>
+</head>
+<style>
+.warp{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.g-bg{
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 370px;
+    width: 100%;
+}
+.warp .g-background{
+    height: 425px;
+    width: 110%;
+    z-index: 1;
+}
+.g-main{
+    display: block;
+    margin: 0 auto;
+    width: 940px;
+    height: 370px;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+}
+.img1{
+    height: 50px;
+    width: 116px;
+    z-index: 2;
+    position: absolute;
+    top:113px;
+    left: 762px;
+}
+.img2{
+    height:123px;
+    width: 302px;
+    z-index: 2;
+    position: absolute;
+    top:73px;
+    left: 467px;
+}
+.img3{
+    position: absolute;
+    z-index: 3;
+    height: 75px;
+    width: 430px;
+    top:263px;
+    left: 442px;
+}
+.img4{
+    position: absolute;
+    z-index: 4;
+    width: 166px;
+    height: 49px;
+    top:297px;
+    left: 371px;
+}
+.img5{
+    position: absolute;
+    height: 156px;
+    width: 440px;
+    top:150px;
+    left: 432px;
+    z-index: 5;
+}
+.img6{
+    position: absolute;
+    z-index: 6;
+    height: 230px;
+    width: 188px;
+    top:94px;
+    left: 356px;
+}
+.img7{
+    position: absolute;
+    z-index: 7;
+    width: 271px;
+    height: 249px;
+    top:72px;
+    left: 72px;
+}
+</style>
+<script>
+    var lastX = null,
+        lastY = null;
+    var list = [];
+    window.onload = function () {
+        for(var i=1;i<8;i++){
+            var data = {};
+            data.obj = document.getElementsByClassName('img' + i)[0];
+            data.left = data.obj.style.left;
+            data.top = data.obj.style.top;
+            list.push(data);
+        }
+
+        var x = 0;
+        var y = 0;
+        window.onmousemove = function (e) {
+            var currentX= e.clientX;
+            var currentY= e.clientY;
+
+            if(lastX == null || lastY == null){
+                lastX = currentX;
+                lastY = currentY;
+                return;
+            }
+            if(currentX != lastX){
+                var right = currentX - lastX;
+                x = x + right;
+                console.log(right);
+                for(var i=0;i<7;i++){
+                    if(i == 0 || i == 1){
+                        list[i].obj.style.left = parseInt(list[i].left) - (x / 20) + 'px';
+                    }else{
+                        list[i].obj.style.left = parseInt(list[i].left) + (x / 20) + 'px';
+                    }
+                }
+            }
+            if(currentY != lastY){
+                var bottom = currentY - lastY;
+                y = y + bottom;
+                for(var i=0;i<7;i++){
+                    if(i == 0 || i == 1){
+                        list[i].obj.style.top = parseInt(list[i].top) - (y / 20) + 'px';
+                    }else{
+                        list[i].obj.style.top = parseInt(list[i].top) + (y / 20) + 'px';
+                    }
+                }
+            }
+//            if(currentX > lastX){
+//                var right = currentX - lastX;
+//                x = x + right;
+//                console.log(right);
+//                for(var i=0;i<7;i++){
+//                    if(i == 0 || i == 1){
+//                        list[i].obj.style.left = parseInt(list[i].left) - (x / 20) + 'px';
+//                    }else{
+//                        list[i].obj.style.left = parseInt(list[i].left) + (x / 20) + 'px';
+//                    }
+//                }
+//                console.log('right');
+//            }
+//            else if(currentX < lastX){
+//                var left = currentX - lastX;
+//                x = x + left;
+//                for(var i=0;i<7;i++){
+//                    if(i == 0 || i == 1){
+//                        list[i].obj.style.left = parseInt(list[i].left) - (x / 20) + 'px';
+//                    }else{
+//                        list[i].obj.style.left = parseInt(list[i].left) + (x / 20) + 'px';
+//                    }
+//                }
+//                console.log('left');
+//            } else{
+//                console.log('center');
+//            }
+//            if(currentY > lastY){
+//                var bottom = currentY - lastY;
+//                y = y + bottom;
+//                for(var i=0;i<7;i++){
+//                    if(i == 0 || i == 1){
+//                        list[i].obj.style.top = parseInt(list[i].top) - (y / 20) + 'px';
+//                    }else{
+//                        list[i].obj.style.top = parseInt(list[i].top) + (y / 20) + 'px';
+//                    }
+//                }
+//                console.log('bottom');
+//            } else if(currentY < lastY){
+//                var top = currentY - lastY;
+//                y = y + top;
+//                for(var i=0;i<7;i++){
+//                    if(i == 0 || i == 1){
+//                        list[i].obj.style.top = parseInt(list[i].top) - (y / 20) + 'px';
+//                    }else{
+//                        list[i].obj.style.top = parseInt(list[i].top) + (y / 20) + 'px';
+//                    }
+//                }
+//                console.log('top');
+//            }else{
+//                console.log('ccc');
+//            }
+            lastX = currentX;
+            lastY = currentY;
+        }
+    };
+
+</script>
+<body>
+    <div class="warp">
+        <div class="g-bg">
+            <img class="g-background" src="images/bg3.jpeg">
+        </div>
+        <div class="g-main">
+            <img class="img1" style="left: 762px;top: 113px;" src="images/top2.png">
+            <img class="img2" style="left: 467px;top: 73px;" src="images/top.png">
+            <img class="img3" style="left: 442px;top: 263px;" src="images/bg.png">
+            <img class="img4" style="left: 371px;top: 297px;" src="images/round.png">
+            <img class="img5" style="left: 432px;top: 150px;" src="images/background.png">
+            <img class="img6" style="left: 356px;top: 94px;" src="images/index.png">
+            <img class="img7" style="left: 72px;top: 72px;" src="images/404.png">
+        </div>
+    </div>
+</body>
+</html>
