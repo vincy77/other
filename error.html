@@ -1,3 +1,4 @@
+<!--实现图片随着鼠标移动而移动-->
 <html>
 <head>
     <title>404</title>
@@ -92,6 +93,7 @@
         lastY = null;
     var list = [];
     window.onload = function () {
+        //每个图片的对象和对应的left和top
         for(var i=1;i<8;i++){
             var data = {};
             data.obj = document.getElementsByClassName('img' + i)[0];
@@ -102,15 +104,19 @@
 
         var x = 0;
         var y = 0;
+        //鼠标移动时
         window.onmousemove = function (e) {
+            //当前鼠标位置
             var currentX= e.clientX;
             var currentY= e.clientY;
 
+            //鼠标最后停留位置
             if(lastX == null || lastY == null){
                 lastX = currentX;
                 lastY = currentY;
                 return;
             }
+            //比较两者的偏移量，判断鼠标是上下左右移动
             if(currentX != lastX){
                 var right = currentX - lastX;
                 x = x + right;
